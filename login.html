@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=600"> <!-- 设置固定宽度 -->
+    <title>石家庄学院 - 登录</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="login-title">石家庄学院</h1>
+        <form onsubmit="login(event)">
+            <input type="text" id="studentId" placeholder="学号" class="input-field" required>
+            <input type="text" id="studentName" placeholder="姓名" class="input-field" required>
+            <button type="submit" class="login-btn">登录</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!-- <div class="actions">
+    ${post.studentId !== user.studentId ? `<button class="chat-btn" onclick="sendPrivateMessage('${post.studentId}', '${post.studentName}')">私聊</button>` : ""}
+    <input type="text" placeholder="评论" class="comment-input" id="comment-${post.id}" onkeydown="if(event.key === 'Enter') submitComment('${post.id}')">
+    <button class="comment-btn" onclick="submitComment('${post.id}')">发送</button>
+</div> -->

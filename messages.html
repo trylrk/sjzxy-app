@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=600"> <!-- 设置固定宽度 -->
+    <title>石院 - 实时消息</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>石院交流、交易平台</h1>
+        <span class="tab active">实时 (<span id="userName"></span>)</span>
+    </header>
+    <div class="container">
+        <div class="post-form">
+            <div class="avatar"></div>
+            <textarea id="postContent" placeholder="有什么新鲜事？" class="post-input" onkeydown="if(event.key === 'Enter') submitPost()"></textarea>
+            <button onclick="document.getElementById('imageInput').click()" class="image-btn">图片</button>
+            <input type="file" id="imageInput" accept="image/*" multiple style="display: none;" onchange="handleImageSelect()">
+            <button onclick="submitPost()" class="post-btn">发布</button>
+            <div id="imagePreview" class="image-preview"></div>
+        </div>
+        <div id="postsContainer" class="posts"></div>
+    </div>
+    <footer class="footer">
+        <div class="latest-btn" onclick="scrollToTop()">最新</div>
+        <div class="my-icon" onclick="showMyMessages()">
+            <span>我的</span>
+            <span id="notificationDot" class="notification-dot"></span>
+        </div>
+    </footer>
+    <div id="myMessagesModal" class="modal" onclick="if(event.target === this) hideMyMessages()">
+        <div class="modal-content">
+            <span class="close" onclick="hideMyMessages()">×</span>
+            <h2>我的消息</h2>
+            <div id="myMessagesContainer" class="messages-list"></div>
+            <div class="reply-form">
+                <textarea id="replyContent" placeholder="回复..." class="reply-input" onkeydown="if(event.key === 'Enter') submitReply()"></textarea>
+                <button onclick="submitReply()" class="reply-btn">发送</button>
+            </div>
+        </div>
+    </div>
+    <div id="imageModal" class="modal" onclick="if(event.target === this) hideImageModal()">
+        <div class="image-modal-content">
+            <span class="close" onclick="hideImageModal()">×</span>
+            <img id="enlargedImage" alt="Enlarged Image">
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

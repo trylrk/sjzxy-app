@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑客帝国代码雨</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            color: #00ff00;
+        }
+        .matrix {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix" id="matrix"></div>
+
+    <script>
+        const matrix = document.getElementById('matrix');
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+        const columns = matrix.offsetWidth / 14;
+        const drops = [];
+
+        for (let i = 0; i < columns; i++) {
+            drops.push(0);
+        }
+
+        function draw() {
+            matrix.innerHTML = '';
+            for (let i = 0; i < drops.length; i++) {
+                const text = document.createTextNode(chars[Math.floor(Math.random() * chars.length)]);
+                const span = document.createElement('span');
+                span.appendChild(text);
+                span.style.position = 'absolute';
+                span.style.left = `${i * 14}px`;
+                span.style.top = `${drops[i] * 14}px`;
+                span.style.opacity = Math.random() * 0.5 + 0.5;
+                matrix.appendChild(span);
+
+                drops[i]++;
+                if (drops[i] * 14 > matrix.offsetHeight || Math.random() > 0.95) {
+                    drops[i] = 0;
+                }
+            }
+        }
+
+        setInterval(draw, 30);
+    </script>
+</body>
+</html>
